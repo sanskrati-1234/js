@@ -8,6 +8,17 @@
     <style>
       #category {
         display: flex;
+        justify-content: space-evenly;
+      }
+      .category-card-box {
+        align-items: center;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .image {
+        width: 70px;
       }
     </style>
   </head>
@@ -23,40 +34,41 @@
     },
     {
       title: "Grocery",
-      img: "https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png",
+      img: "https://rukminim1.flixcart.com/flap/128/128/image/29327f40e9c4d26b.png",
     },
     {
       title: "Mobiles",
-      img: "https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png",
+      img: "https://rukminim1.flixcart.com/flap/128/128/image/22fddf3c7da4c4f4.png",
     },
     {
       title: "Fashion",
-      img: "https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png",
+      img: "https://rukminim1.flixcart.com/flap/128/128/image/82b3ca5fb2301045.png",
     },
     {
       title: "Electronics",
-      img: "https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png",
+      img: "https://rukminim1.flixcart.com/flap/128/128/image/69c6589653afdb9a.png",
     },
     {
       title: "Home",
-      img: "https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png",
+      img: "https://rukminim1.flixcart.com/flap/128/128/image/ab7e2b022a4587dd.jpg",
     },
     {
       title: "Appliances",
-      img: "https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png",
+      img: "https://rukminim1.flixcart.com/flap/128/128/image/0ff199d1bd27eb98.png",
     },
     {
       title: "Travel",
-      img: "https://rukminim1.flixcart.com/flap/128/128/image/f15c02bfeb02d15d.png",
+      img: "https://rukminim1.flixcart.com/flap/128/128/image/71050627a56b4693.png",
     },
   ];
   const category = document.getElementById("category");
   function createChild(childData) {
     const child = document.createElement("div");
-    child.innerHTML = `<div class="category-card">
-            <img src=${childData.img} />
+    child.className = "category-card-box";
+    child.innerHTML = `
+            <img src=${childData.img} class="image" />
             <p>${childData.title}</p>
-        </div>`;
+        `;
     return child;
   }
   for (let i = 0; i < list.length; i++) {
