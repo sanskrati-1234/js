@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <div class="description">description</div>
+      <div class="description">description</div>
+      <div class="description">description</div>
+      <div class="description">description</div>
+    </div>
+    <div class="description">description1</div>
+    <div class="description">description2</div>
+    <div class="description3">
+      <div>
+        <div>
+          <div class="demo">demo</div>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </body>
+</html>
+<script>
+  /**
+   * Find elements by className.
+   * @param {string} element - This is the class attribute of  html elements.
+   * @return {Array || null}
+   */
+  const getElementsWithClass = (elementClassName) => {
+    const result = [];
+    if (!elementClassName || typeof elementClassName !== "string") {
+      throw new TypeError(
+        "Failed to execute 'getElementById' on 'Document': 1 argument required, but only 0 present."
+      );
+    }
+    const searchNodesElement = (element) => {
+      if (element.className === elementClassName) {
+        result.push(element);
+      }
+      for (let item of element.childNodes) {
+        searchNodesElement(item);
+      }
+    };
+    searchNodesElement(document.body);
+    return result || null;
+  };
+
+  console.log(getElementsWithClass("description"));
+  console.log(getElementsWithClass("demo"));
+  console.log(getElementsWithClass(123));
+  console.log(getElementsWithClass());
+</script>

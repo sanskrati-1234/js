@@ -1,43 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <section>
-        <div id="description">description1</div>
-        <div id="description">description2</div>
-        <div id="description">description3</div>
+      <div id="description">description1</div>
+      <div id="description">description2</div>
+      <div id="description3">
+        <div>
+          <div>
+            <div id="demo">demo</div>
+          </div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
     </section>
-</body>
+  </body>
 
-<script>
+  <script>
+    /**
+     * Find element by Id.
+     * @param {string} element - This is the id attribute of an html element.
+     * @return {HTMLElement || null}
+     */
+    const getElementId = (element) => {
+      // Handling edge cases
+      if (!element || typeof element !== "string") {
+        throw new TypeError(
+          "Failed to execute 'getElementById' on 'Document': 1 argument required, but only 0 present."
+        );
+      }
 
-    function getElementId(elements) {
-
-        const result = [];
-        function nodeId(node) {
-
-            if (node.id === elements) {
-                return result.push(node);
-            }
-            // here node.childNodes will give child nodes of parent the node
-            for (let i = 0; i < node.childNodes.length; i++) {
-                nodeId(node.childNodes[i]);
-            }
+      // Searching node element recursivly
+      const searchNodeElement = (node) => {
+        if (node.id === element) {
+          return node;
         }
-        nodeId(document.body);
-        /* If you have multiple elements with the same ID, you’ll only run into problems when using 		 JavaScript to access those elements, so JavaScript only acknowledges the first element, so 		 have taken result[0]
-        */
-        return result[0];
-    }
-    console.log(getElementId("description").innerText);
+        for (let item of node.childNodes) {
+          const result = searchNodeElement(item);
+          if (result) {
+            return result;
+          }
+        }
+      };
 
-</script>
-
+      return searchNodeElement(document.body) || null;
+    };
+    console.log(getElementId("demo")); //<div id="demo">demo</div>
+    console.log(getElementId("description")); //<div id="description">description1</div>
+    console.log(getElementId("demo1")); // null
+    console.log(getElementId(123)); // Throw error, since id must be a string
+    console.log(getElementId()); // Throw error, since id parameter is missing
+  </script>
 </html>
