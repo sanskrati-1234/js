@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <a id="count" onclick="increaseCount()">1</a>
+        <div id="discription">description</div>
+    </div>
+</body>
+<script>
+    function increaseCount() {
+        console.log("increaseCount");
+        let count = document.getElementById("count");
+
+        count.innerText = parseInt(count.innerText) + 1;
+    }
+
+    function getElementId(elements) {
+        const result = [];
+        function nodeId(node) {
+            console.log(node.id);
+            if (node.id === elements) {
+                console.log(node.id);
+                result.push(node);
+            }
+            for (let i = 0; i < node.childNodes.length; i++) {
+                nodeId(node.childNodes[i]);
+            }
+        }
+
+        nodeId(document.body);
+
+        return result;
+    }
+    console.log(getElementId("discription")[0].innerText);
+</script>
+
+</html>
