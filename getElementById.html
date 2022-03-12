@@ -9,37 +9,35 @@
 </head>
 
 <body>
-    <div>
-        <a id="count" onclick="increaseCount()">1</a>
-        <div id="discription">description</div>
-    </div>
+    <section>
+        <div id="description">description1</div>
+        <div id="description">description2</div>
+        <div id="description">description3</div>
+    </section>
 </body>
-<script>
-    function increaseCount() {
-        console.log("increaseCount");
-        let count = document.getElementById("count");
 
-        count.innerText = parseInt(count.innerText) + 1;
-    }
+<script>
 
     function getElementId(elements) {
+
         const result = [];
         function nodeId(node) {
-            console.log(node.id);
+
             if (node.id === elements) {
-                console.log(node.id);
-                result.push(node);
+                return result.push(node);
             }
+            // here node.childNodes will give child nodes of parent the node
             for (let i = 0; i < node.childNodes.length; i++) {
                 nodeId(node.childNodes[i]);
             }
         }
-
         nodeId(document.body);
-
-        return result;
+        /* If you have multiple elements with the same ID, you’ll only run into problems when using 		 JavaScript to access those elements, so JavaScript only acknowledges the first element, so 		 have taken result[0]
+        */
+        return result[0];
     }
-    console.log(getElementId("discription")[0].innerText);
+    console.log(getElementId("description").innerText);
+
 </script>
 
 </html>
