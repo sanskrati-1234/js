@@ -7,7 +7,7 @@
     <title>Document</title>
   </head>
 
-  <body>
+  <body id="demo">
     <section>
       <div id="description">description1</div>
       <div id="description">description2</div>
@@ -44,7 +44,7 @@
       }
 
       // Searching node element recursivly
-      const searchNodeElement = (node) => {
+      const searchNodeElement = () => {
         if (node.id === element) {
           return node;
         }
@@ -60,7 +60,7 @@
     };
     console.log(getElementId("demo")); //<div id="demo">demo</div>
     console.log(getElementId("description")); //<div id="description">description1</div>
-    console.log(getElementId("demo1")); // null
+    //console.log(getElementId("demo1")); // null
     console.log(getElementId(123)); // Throw error, since id must be a string
     console.log(getElementId()); // Throw error, since id parameter is missing
   </script>

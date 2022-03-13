@@ -11,29 +11,47 @@
   <body>
     <div class="container">
       <div class="calculator">
-        <input type="text" placeholder="0" />
+        <input type="text" placeholder="0" id="outputscreen" />
 
-        <button onclick="clear()">C</button>
+        <button onclick="clr()">C</button>
         <button onclick="del()">Del</button>
-        <button onclick="show()">%</button>
-        <button onclick="show()">/</button>
-        <button onclick="show()">7</button>
-        <button onclick="show()">8</button>
-        <button onclick="show()">9</button>
-        <button onclick="show()">*</button>
-        <button onclick="show()">4</button>
-        <button onclick="show()">5</button>
-        <button onclick="show()">6</button>
-        <button onclick="show()">-</button>
-        <button onclick="show()">1</button>
-        <button onclick="show()">2</button>
-        <button onclick="show()">3</button>
-        <button onclick="show()">+</button>
+        <button onclick="show('%')">%</button>
+        <button onclick="show('/')">/</button>
+        <button onclick="show('7')">7</button>
+        <button onclick="show('8')">8</button>
+        <button onclick="show('9')">9</button>
+        <button onclick="show('*')">*</button>
+        <button onclick="show('4')">4</button>
+        <button onclick="show('5')">5</button>
+        <button onclick="show('6')">6</button>
+        <button onclick="show('-')">-</button>
+        <button onclick="show('1')">1</button>
+        <button onclick="show('2')">2</button>
+        <button onclick="show('3')">3</button>
+        <button onclick="show('+')">+</button>
 
-        <button onclick="show()">0</button>
-        <button onclick="show()">.</button>
-        <button class="expand" onclick="show()">=</button>
+        <button onclick="show('0')">0</button>
+        <button onclick="show('.')">.</button>
+        <button class="expand" onclick="calculate()">=</button>
       </div>
     </div>
   </body>
 </html>
+<script>
+  const outputscreen = document.getElementById("outputscreen");
+  outputscreen.value = "";
+  function show(val) {
+    outputscreen.value += val;
+  }
+  function del() {
+    outputscreen.value = outputscreen.value.slice(0, -1);
+  }
+
+  function clr() {
+    console.log(outputscreen.value);
+    outputscreen.value = " ";
+  }
+  function calculate() {
+    outputscreen.value = eval(outputscreen.value);
+  }
+</script>
