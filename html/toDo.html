@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        background-color: #ecf0f3;
+        box-sizing: border-box;
+      }
+      #todo {
+        width: 100vw;
+        text-align: center;
+      }
+      input {
+        border: none;
+        outline: none;
+        grid-column: span 4;
+        height: 50px;
+        width: 260px;
+        background-color: #ecf0f3;
+        border-radius: 30px;
+        box-shadow: inset -5px -5px 12px #ffffff,
+          inset 5px 5px 5px rgba(0, 0, 0, 0.16);
+        color: rgb(70, 70, 70);
+        text-align: end;
+        font-size: 12px;
+        margin: auto;
+        margin-top: 40px;
+        margin-bottom: 30px;
+        padding: 20px;
+      }
+
+      button {
+        width: 60px;
+        height: 48px;
+        background-color: #ecf0f3;
+        border: none;
+        border-radius: 40%;
+        margin: 8px;
+        font-size: 16px;
+        box-shadow: -5px -5px 12px #ffffff, 5px 5px 12px rgba(0, 0, 0, 0.16);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="todo">
+      <input type="text" id="task" />
+      <button onclick="add()">Add</button>
+      <div id="list"></div>
+    </div>
+  </body>
+</html>
+<script>
+  const task = document.getElementById("task");
+  const list = document.getElementById("list");
+  function add() {
+    addItemInToDoList();
+  }
+  const todolist = {};
+
+  function addItemInToDoList() {
+    localStorage.setItem();
+    const taskName = document.createElement("div");
+    const taskbox = document.createElement("div");
+    taskName.innerText = task.value;
+    const del = document.createElement("button");
+    del.className = "del";
+    del.innerText = "delete";
+    const edit = document.createElement("button");
+    edit.className = "edit";
+    edit.innerText = "edit";
+    taskbox.append();
+    list.append(taskName, del, edit);
+  }
+</script>
