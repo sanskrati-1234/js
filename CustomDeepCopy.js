@@ -1,46 +1,53 @@
 const obj = {
-  name: "Sanskrati",
-  details: {
-    address: "Patan",
-    phone: {
-      number2: {
-        xyz: {
-          zx: "abc",
+  data: [
+    {
+      type: "articles",
+      id: "1",
+      attributes: {
+        title: "JSON:API paints my bikeshed!",
+        body: "The shortest article. Ever.",
+      },
+      relationships: {
+        author: {
+          data: { id: "42", type: "people" },
         },
       },
     },
-  },
-  image: {
-    image1: "11",
-    image2: {
-      key1: {
-        key2: "xyz",
-        key3: {
-          key4: [1, 2, 3, 4],
-        },
+  ],
+  included: [
+    {
+      type: "people",
+      id: "42",
+      attributes: {
+        name: "John",
       },
     },
-  },
+  ],
 };
 
-const deepCopy = (obj) => {
-  if (!Boolean(obj)) {
-    return;
+const deepObjectCloning = (obj) => {
+  if (!isObject(obj)) {
+    return "Enter valid object";
   }
-  let newObj = {};
+  let clonedObject = {};
   for (let item in obj) {
-    if (typeof obj[item] !== "object") {
-      newObj[item] = obj[item];
-    } else if (typeof obj[item] === "object") {
-      newObj[item] = deepCopy(obj[item]);
+    if (!isObject(obj[item])) {
+      clonedObject[item] = obj[item];
+    } else if (isObject(obj[item])) {
+      clonedObject[item] = deepObjectCloning(obj[item]);
     }
   }
 
-  return newObj;
+  return clonedObject;
 };
 
-obj1 = deepCopy(obj);
-obj1.details.address = "Jabalpur";
-console.log(obj1);
-console.log(obj1.details.address);
-console.log(obj.details.address);
+const isObject = (obj) => {
+  return typeof obj === "object";
+};
+
+const newObj = deepObjectCloning(obj);
+
+console.log(newObj);
+newObj.data[0].type = "articls1";
+console.log(newObj.data[0].type); //articls1
+console.log(obj.data[0].type); //articles
