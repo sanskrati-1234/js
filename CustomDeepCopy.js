@@ -29,7 +29,7 @@ const deepObjectCloning = (obj) => {
   if (!isObject(obj)) {
     return "Enter valid object";
   }
-  let clonedObject = {};
+  const clonedObject = {};
   for (let item in obj) {
     if (!isObject(obj[item])) {
       clonedObject[item] = obj[item];

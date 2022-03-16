@@ -61,10 +61,19 @@
   function add() {
     addItemInToDoList();
   }
-  const todolist = {};
+  let todolist = [];
+  function loadToDoList() {
+    const toDo = localStorage.getItem("todo");
+    if (!toDo) {
+      return;
+    }
+    const parsedToDo = JSON.parse(toDo);
+    todolist = [...parsedToDo];
+    showTodoList();
+  }
 
   function addItemInToDoList() {
-    localStorage.setItem();
+    /*localStorage.setItem();
     const taskName = document.createElement("div");
     const taskbox = document.createElement("div");
     taskName.innerText = task.value;
@@ -75,6 +84,37 @@
     edit.className = "edit";
     edit.innerText = "edit";
     taskbox.append();
-    list.append(taskName, del, edit);
+    list.append(taskName, del, edit);*/
+    const item = {};
+    item["task"] = task.value;
+    item["id"] = new Date().getDate();
+
+    todolist.push(item);
+    console.log("todolist", todolist);
+    localStorage.setItem("todo", JSON.stringify(todolist));
+    addToDoToList(item);
+    task.value = "";
   }
+  function addToDoToList(toDo) {
+    const taskName = document.createElement("div");
+    const taskbox = document.createElement("div");
+    taskName.innerText = toDo.task;
+    const del = document.createElement("button");
+    del.className = "del";
+    del.innerText = "delete";
+    del["data-id"] = toDo.id;
+    const edit = document.createElement("button");
+    edit.className = "edit";
+    edit["data-id"] = toDo.id;
+    edit.innerText = "edit";
+
+    taskbox.append(taskName, del, edit);
+    list.append(taskbox);
+  }
+  function showTodoList() {
+    for (let i = 0; i < todolist.length; i++) {
+      addToDoToList(todolist[i]);
+    }
+  }
+  loadToDoList();
 </script>

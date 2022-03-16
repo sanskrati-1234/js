@@ -4,14 +4,15 @@ const multipleElementByTwoAndDeleteIfDivisibleBy5 = (numArr) => {
   if (!Array.isArray(numArr)) {
     return "Enter valid array";
   }
-  return numArr
-    .map((item) => {
-      return (item = item * 2);
-    })
-    .filter((item) => {
-      if (item % 5 !== 0) {
-        return item;
-      }
-    });
+  for (let i = 0; i < numArr.length; i++) {
+    console.log(numArr[i]);
+    if (numArr[i] % 5 !== 0) {
+      numArr[i] = numArr[i] * 2;
+    } else {
+      numArr.splice(i, 1);
+      i--;
+    }
+  }
+  return numArr;
 };
 console.log(multipleElementByTwoAndDeleteIfDivisibleBy5(numbers));
