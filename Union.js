@@ -8,7 +8,7 @@ function findUnion(a, b) {
   const union = [];
   let flag = false;
 
-  for (let j = 0; j < b.length; j++) {
+  /*for (let j = 0; j < b.length; j++) {
     for (let i = j + 1; i < a.length - 1; i++) {
       if (b[j] === a[i]) {
         flag = true;
@@ -20,6 +20,18 @@ function findUnion(a, b) {
     } else {
       a.push(b[j]);
     }
+  }*/
+  const des = {};
+  for (let i = 0; i < b.length; i++) {
+    des[b[i]] = b[i];
+  }
+
+  for (let j = 0; j < a.length; j++) {
+    des[a[j]] = a[j];
+  }
+  a.length = 0;
+  for (let key in des) {
+    a.push(key);
   }
   return a;
 }
