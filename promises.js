@@ -7,6 +7,16 @@ console.log(3);
 const promise = new Promise((request, response) => {
   request("4.done");
 });
-promise.then((res) => {
-  console.log(res);
+const promise1 = new Promise((request, response) => {
+  response("failed");
 });
+/*promise.then((res) => {
+  console.log(res);
+});*/
+promise1
+  .then((res) => {
+    //console.log(res);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
