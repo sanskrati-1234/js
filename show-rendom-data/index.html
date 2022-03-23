@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div><span>count</span><span id="count"></span></div>
+    <button onclick="delete_one()">Select remdom data</button>
+    <a href="selected.html">See selected data</a>
+    <div id="selected-data"></div>
+  </body>
+</html>
+<script>
+  const data = [
+    { name: "Sanskrati" },
+    { name: "krati" },
+    { name: "krati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+    { name: "Sanskrati" },
+  ];
+
+  let count = document.getElementById("count");
+
+  let data1;
+  let selected = document.getElementById("selected-data");
+  setValues();
+
+  function setValues() {
+    if (localStorage.getItem("data") === null) {
+      data1 = localStorage.setItem("data", JSON.stringify(data));
+    } else {
+      data1 = localStorage.getItem("data");
+      count.innerText = JSON.parse(data1).length;
+    }
+  }
+  deleted = [];
+  selected = [];
+  function delete_one() {
+    let data = localStorage.getItem("data");
+    let dataarr = JSON.parse(data);
+
+    selected.innerText = dataarr.splice(0, 1)[0].name;
+    selected.push(dataarr.splice(0, 1)[0]);
+    localStorage.setItem("selected", selected);
+    localStorage.setItem("data", JSON.stringify(dataarr));
+
+    setValues();
+  }
+</script>
