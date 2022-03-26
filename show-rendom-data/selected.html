@@ -15,24 +15,31 @@
   selectedData = JSON.parse(localStorage.getItem("selected"));
   let originalData = JSON.parse(localStorage.getItem("data"));
   //console.log(selectedData);
+  init();
+  function init() {
+    if (selectedData.length < 0) {
+      return;
+    }
 
-  for (let i = 0; i < selectedData.length; i++) {
-    //console.log(selectedData[i]);
-    const item = document.createElement("div");
-    item["data-id"] = selectedData[i].id;
+    for (let i = 0; i < selectedData.length; i++) {
+      //console.log(selectedData[i]);
+      let item = document.createElement("div");
+      item["data-id"] = selectedData[i].id;
 
-    item.innerText = selectedData[i];
-    const button = document.createElement("button");
-    button.innerText = "Remove";
-    button.id = selectedData[i].id;
-    button.addEventListener("click", deleteSeleted);
-    //button.onclick = `deleteSeleted(${selectedData[i].id},${item})`;
-    item.append(button);
-    selected.appendChild(item);
+      item.innerText = selectedData[i];
+      let button = document.createElement("button");
+      button.innerText = "Remove";
+      button.id = selectedData[i].id;
+      button.addEventListener("click", deleteSeleted);
+      //button.onclick = `deleteSeleted(${selectedData[i].id},${item})`;
+      item.append(button);
+      selected.appendChild(item);
+    }
   }
-  function deleteSeleted(id, element) {
-    console.log("onClick", typeof this.id);
 
+  function deleteSeleted(id, element) {
+    console.log("onClick", this);
+    if (selectedData.length < 0) return;
     for (let i = 0; i < selectedData.length; i++) {
       if (selectedData[i].id == this.id) {
         console.log("------");
