@@ -13,12 +13,37 @@
 <script>
   const selected = document.getElementById("selected");
   selectedData = JSON.parse(localStorage.getItem("selected"));
+  let originalData = JSON.parse(localStorage.getItem("data"));
+  //console.log(selectedData);
 
   for (let i = 0; i < selectedData.length; i++) {
+    //console.log(selectedData[i]);
     const item = document.createElement("div");
+    item["data-id"] = selectedData[i].id;
 
-    item.innerText = selectedData[i].name;
+    item.innerText = selectedData[i];
+    const button = document.createElement("button");
+    button.innerText = "Remove";
+    button.id = selectedData[i].id;
+    button.addEventListener("click", deleteSeleted);
+    //button.onclick = `deleteSeleted(${selectedData[i].id},${item})`;
+    item.append(button);
     selected.appendChild(item);
   }
-  selected.innerText = JSON.parse(selectedData);
+  function deleteSeleted(id, element) {
+    console.log("onClick", typeof this.id);
+
+    for (let i = 0; i < selectedData.length; i++) {
+      if (selectedData[i].id == this.id) {
+        console.log("------");
+
+        originalData.push(selectedData.splice(i, 1));
+        this.parentNode.remove();
+        localStorage.setItem("selected", JSON.stringify(selectedData));
+        localStorage.setItem("data", JSON.stringify(originalData));
+      }
+    }
+    //selected.removeChild(element);
+  }
+  //selected.innerText = JSON.parse(selectedData);
 </script>
