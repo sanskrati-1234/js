@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  const p1 = () =>
+    new Promise((resolve, reject) => {
+      resolve("p1 resolve");
+    });
+  const p2 = () =>
+    new Promise((resolve, reject) => {
+      resolve("p2 resolve");
+    });
+  const p3 = () =>
+    new Promise((resolve, reject) => {
+      resolve("p3 resolve");
+    });
+  const p4 = () =>
+    new Promise((resolve, reject) => {
+      resolve("p4 resolve");
+    });
+
+  const p5 = () =>
+    new Promise((resolve, reject) => {
+      reject("p5 reject");
+    });
+  const func = async () => {
+    const p11 = await Promise.all([p1(), p2(), p3(), p4(), p5()]).catch(
+      (err) => {
+        console.log(err);
+      }
+    );
+    console.log(p11);
+    const p22 = await Promise.allSettled([p1(), p2(), p3(), p4(), p5()]).catch(
+      (err) => {
+        console.log(err);
+      }
+    );
+    console.log(p22);
+    const p33 = await Promise.any([p1, p2, p3, p4, p5]).catch((err) => {
+      console.log(err);
+    });
+    console.log(p33);
+  };
+  func();
+</script>
