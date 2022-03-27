@@ -43,9 +43,11 @@
       }
     );
     console.log(p22);
-    const p33 = await Promise.any([p1, p2, p3, p4, p5]).catch((err) => {
-      console.log(err);
-    });
+    const p33 = await Promise.any([p1(), p2(), p3(), p4(), p5()]).catch(
+      (err) => {
+        console.log(err);
+      }
+    );
     console.log(p33);
   };
   func();
