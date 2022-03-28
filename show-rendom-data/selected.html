@@ -44,7 +44,7 @@
       if (selectedData[i].id == this.id) {
         console.log("------");
 
-        originalData.push(selectedData.splice(i, 1));
+        originalData.push(selectedData.splice(i, 1)[0]);
         this.parentNode.remove();
         localStorage.setItem("selected", JSON.stringify(selectedData));
         localStorage.setItem("data", JSON.stringify(originalData));
