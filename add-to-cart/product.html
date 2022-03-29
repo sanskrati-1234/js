@@ -6,9 +6,75 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
-  <body></body>
+  <body>
+    <div id="product"></div>
+  </body>
 </html>
 <script>
-  const params = new URLSearchParams(window.location.search);
-  console.log(params);
+  const id = location.search.split("=")[1];
+
+  const product = document.getElementById("product");
+  let products = JSON.parse(localStorage.getItem("products"));
+  let cart = [];
+  let cartProduct = {};
+  init();
+  function init() {
+    if (localStorage.getItem("cart") === null) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+    } else {
+      cart = JSON.parse(localStorage.getItem("cart"));
+    }
+  }
+  for (let item in products) {
+    if (products[item].id == id) {
+      let outerBox = document.createElement("div");
+      let image = document.createElement("img");
+      image.src = products[item].img;
+      let discount = document.createElement("p");
+      discount.innerText = products[item].discount;
+      let quantity = document.createElement("p");
+      quantity.innerText = products[item].quantity;
+      let price = document.createElement("p");
+      price.innerText = products[item].price;
+      let addToCart = document.createElement("button");
+      addToCart.innerText = "Add to cart";
+      addToCart.id = products[item].id;
+      addToCart.addEventListener("click", addProductIntoCart);
+      outerBox.append(image, discount, quantity, addToCart);
+      product.appendChild(outerBox);
+    }
+  }
+  let flag = false;
+  function addProductIntoCart() {
+    for (let item in products) {
+      if (products[item].id == id) {
+        if (products[item].quantity > 0) {
+          cartProduct = JSON.parse(JSON.stringify(products[item]));
+          console.log(products[item].quantity);
+          products[item].quantity = products[item].quantity - 1;
+          //console.log(products[item].quantity);
+          localStorage.setItem("products", JSON.stringify(products));
+          flag = true;
+        }
+      }
+    }
+    if (flag) {
+      for (let item in cart) {
+        if (cart[item].id == id) {
+          //console.log(cart[item].quantity);
+          cart[item].quantity = cart[item].quantity + 1;
+          //console.log(cart[item].quantity);
+          localStorage.setItem("cart", JSON.stringify(cart));
+          flag = false;
+          break;
+        }
+      }
+      if (flag) {
+        cartProduct.quantity = 1;
+        cart.push(cartProduct);
+        localStorage.setItem("cart", JSON.stringify(cart));
+      }
+    }
+    init();
+  }
 </script>

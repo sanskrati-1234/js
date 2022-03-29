@@ -7,6 +7,7 @@ let productList = [
     discount: "Up to 60% off",
     deal: "Grab or Gone",
     quantity: 5,
+    price: 200,
   },
   {
     id: 2,
@@ -15,6 +16,7 @@ let productList = [
     discount: "Up to 60% off",
     deal: "Grab or Gone",
     quantity: 5,
+    price: 300,
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ let productList = [
     discount: "Up to 60% off",
     deal: "Grab or Gone",
     quantity: 5,
+    price: 500,
   },
   {
     id: 4,
@@ -31,6 +34,7 @@ let productList = [
     discount: "Up to 60% off",
     deal: "Grab or Gone",
     quantity: 5,
+    price: 400,
   },
   {
     id: 5,
@@ -39,30 +43,35 @@ let productList = [
     discount: "Up to 60% off",
     deal: "Grab or Gone",
     quantity: 5,
+    price: 600,
   },
 ];
 init();
 function init() {
-  if (localStorage.getItem("product") === null) {
-    localStorage.setItem("product", JSON.stringify(productList));
+  if (localStorage.getItem("products") === null) {
+    localStorage.setItem("products", JSON.stringify(productList));
   } else {
-    productList = JSON.parse(localStorage.getItem("product"));
+    productList = JSON.parse(localStorage.getItem("products"));
   }
 }
 function displayProducts() {
   product.innerHTML = "";
   for (let item in productList) {
-    let outerBox = document.createElement("a");
-    console.log(productList[item].id);
-    outerBox.href = `product.html?id=${productList[item].id}`;
-    let image = document.createElement("img");
-    image.src = productList[item].img;
-    let discount = document.createElement("p");
-    discount.innerText = productList[item].discount;
-    let quantity = document.createElement("p");
-    quantity.innerText = productList[item].quantity;
-    outerBox.append(image, discount, quantity);
-    product.appendChild(outerBox);
+    if (productList[item].quantity > 0) {
+      let outerBox = document.createElement("a");
+      console.log(productList[item].id);
+      outerBox.href = `product.html?id=${productList[item].id}`;
+      let image = document.createElement("img");
+      image.src = productList[item].img;
+      let discount = document.createElement("p");
+      discount.innerText = productList[item].discount;
+      let quantity = document.createElement("p");
+      quantity.innerText = productList[item].quantity;
+      let price = document.createElement("p");
+      price.innerText = productList[item].price;
+      outerBox.append(image, discount, quantity);
+      product.appendChild(outerBox);
+    }
   }
 }
 

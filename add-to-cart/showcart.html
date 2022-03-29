@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div>
+      <div id="carts"></div>
+      <div id="pricing"></div>
+    </div>
+  </body>
+</html>
+<script>
+  let overAll = 0;
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  let pricing = document.getElementById("pricing");
+  let carts = document.getElementById("carts");
+  for (let i = 0; i < cart.length; i++) {
+    let card = document.createElement("div");
+    card.id = cart[i].id;
+    let image = document.createElement("img");
+    image.src = cart[i].img;
+    let title = document.createElement("div");
+    title.innerText = cart[i].title;
+    let productPrice = document.createElement("p");
+    productPrice.innerText = cart[i].price;
+    let totalPrice = parseInt(cart[i].quantity) * parseInt(cart[i].price);
+    overAll = overAll + totalPrice;
+    let price = document.createElement("p");
+    price.innerText = cart[i].price;
+    cart.append(image, price);
+    carts.append(cart);
+    pricing.append(title, productPrice);
+  }
+  let total = document.createElement("div");
+  total.innerText = overAll;
+</script>
