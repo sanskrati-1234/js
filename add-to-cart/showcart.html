@@ -19,8 +19,8 @@
   let pricing = document.getElementById("pricing");
   let carts = document.getElementById("carts");
   for (let i = 0; i < cart.length; i++) {
-    let card = document.createElement("div");
-    card.id = cart[i].id;
+    let card1 = document.createElement("div");
+    card1.id = cart[i].id;
     let image = document.createElement("img");
     image.src = cart[i].img;
     let title = document.createElement("div");
@@ -31,10 +31,11 @@
     overAll = overAll + totalPrice;
     let price = document.createElement("p");
     price.innerText = cart[i].price;
-    cart.append(image, price);
-    carts.append(cart);
+    card1.append(image, price);
+    carts.append(card1);
     pricing.append(title, productPrice);
   }
   let total = document.createElement("div");
   total.innerText = overAll;
+  pricing.append(total);
 </script>

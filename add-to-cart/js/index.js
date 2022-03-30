@@ -69,7 +69,7 @@ function displayProducts() {
       quantity.innerText = productList[item].quantity;
       let price = document.createElement("p");
       price.innerText = productList[item].price;
-      outerBox.append(image, discount, quantity);
+      outerBox.append(image, discount, quantity, price);
       product.appendChild(outerBox);
     }
   }
