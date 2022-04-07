@@ -12,10 +12,10 @@ function secondMax(arr) {
       second = parseInt(arr[i]);
     }
   }
-  if (max == second) {
+  if (second == Infinity) {
     return -1;
   }
   return second;
 }
 
-console.log(secondMax(["3", "-2"]));
+console.log(secondMax(["4", "4", "4"]));
